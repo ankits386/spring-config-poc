@@ -1,0 +1,63 @@
+spring:
+  messages:
+    basename: ValidationMessages,LabelMessages
+  application:
+    name: authentication
+
+
+secretsPath: ${SECRETS_PATH}
+
+# actuator
+management.server.port: 9090
+management.endpoint.health.enabled: true
+management.endpoint.health.show-details: always
+management.endpoints.web.exposure.include: '*'
+#management.metrics.web.server.auto-time-requests: false
+
+# aws x-ray
+com.amazonaws.xray.sdk.enabled: false
+
+# library log
+#spring.profiles.active=${ENV_NAME}
+
+aella.tech.vault.host: ${VAULT_ADDR}
+aella.tech.vault.token: ${VAULT_TOKEN}
+
+
+
+# keycloak
+keycloak:
+  auth-server-url: https://health-eco-internal-keycloak-dev.np.aella.tech/auth
+  ssl-required: none
+  realm: HealthEco
+  resource: scb-health-eco
+  bearer-only: true
+  confidential-port: 0
+  use-resource-role-mappings: false
+  principal-attribute: preferred_username
+  cors: true
+
+auth:
+  pin:
+    max_attempts: 5
+    lock_timeout_ms: 300000
+  roles:
+    master:
+      name: HealthEco
+      username: healthecouser
+      password: healtheco@1234
+      clientId: scb-health-eco
+      client-secret: 46ca4c07-efce-4cb6-bd65-b1afbe6c8bb6
+      grant-type: password
+    user:
+      clientId: scb-health-eco
+      client-secret: 46ca4c07-efce-4cb6-bd65-b1afbe6c8bb6
+
+mongo.dbName: AuthenticationDB
+
+customer.uid.prefix: PX
+customer.client.notification-service: https://health-eco-internal-notification-service-dev.he.np.aella.tech
+    
+otp.expiry.time: 300000
+otp.coolDown.time: 300000
+app.signature: 4UEvrvjcBMS
