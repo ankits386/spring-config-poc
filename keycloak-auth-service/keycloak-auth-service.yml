@@ -61,3 +61,6 @@ customer.client.notification-service: https://health-eco-internal-notification-s
 otp.expiry.time: 300000
 otp.coolDown.time: 300000
 app.signature: 4UEvrvjcBMS
+app:
+  hello:
+    keycloak: "Helo from Gitlab"
